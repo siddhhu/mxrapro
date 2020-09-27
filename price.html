@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+
+
+.login-snip .login,
+.login-snip .sign-up-form {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: all .4s linear
+}
+
+.login-snip .sign-in,
+.login-snip .sign-up,
+.login-space .group .check {
+    display: none
+}
+
+.login-snip .tab,
+.login-space .group .label,
+.login-space .group .button {
+    text-transform: uppercase
+}
+
+.login-snip .tab {
+    font-size: 22px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent
+}
+
+.login-snip .sign-in:checked+.tab,
+.login-snip .sign-up:checked+.tab {
+    color: blue;
+    border-color: #1161ee
+}
+
+.login-space {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d
+}
+
+.login-space .group {
+    margin-bottom: 15px
+}
+
+.login-space .group .label,
+.login-space .group .input,
+.login-space .group .button {
+    width: 100%;
+    color: #fff;
+    display: block
+}
+
+.login-space .group .input,
+.login-space .group .button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .1)
+}
+
+.login-space .group input[data-type="password"] {
+    text-security: circle;
+    -webkit-text-security: circle
+}
+
+.login-space .group .label {
+    color: #aaa;
+    font-size: 12px
+}
+
+.login-space .group .button {
+    background: #1161ee
+}
+
+.login-space .group label .icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    position: relative;
+    display: inline-block;
+    background: rgba(255, 255, 255, .1)
+}
+
+.login-space .group label .icon:before,
+.login-space .group label .icon:after {
+    content: '';
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    transition: all .2s ease-in-out 0s
+}
+
+.login-space .group label .icon:before {
+    left: 3px;
+    width: 5px;
+    bottom: 6px;
+    transform: scale(0) rotate(0)
+}
+
+.login-space .group label .icon:after {
+    top: 6px;
+    right: 0;
+    transform: scale(0) rotate(0)
+}
+
+.login-space .group .check:checked+label {
+    color: #fff
+}
+
+.login-space .group .check:checked+label .icon {
+    background: #1161ee
+}
+
+.login-space .group .check:checked+label .icon:before {
+    transform: scale(1) rotate(45deg)
+}
+
+.login-space .group .check:checked+label .icon:after {
+    transform: scale(1) rotate(-45deg)
+}
+
+.login-snip .sign-in:checked+.tab+.sign-up+.tab+.login-space .login {
+    transform: rotate(0)
+}
+
+.login-snip .sign-up:checked+.tab+.login-space .sign-up-form {
+    transform: rotate(0)
+}
+
+
+h3 {
+  font-size: 5em;
+  color: white;
+  text-transform: uppercase;
+}
+
+span {
+  border-right: .05em solid;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: '';
+    display: table
+}
+
+.clearfix:after {
+    clear: both;
+    display: block
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.hr {
+    height: 2px;
+    margin: 60px 0 50px 0;
+    background: rgba(255, 255, 255, .2)
+}
+
+.foot {
+    text-align: center
+}
+
+.card {
+    width: 1000px;
+    left: -80px
+}
+
+::placeholder {
+    color: #b3b3b3
+}
+
+.columns {
+  float: left;
+  width: 33.3%;
+  padding: 1px;
+}
+
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.price:hover {
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+.price li {
+  border-bottom: 1px solid #eee;
+  padding: 20px;
+  text-align: center;
+}
+
+.price .grey {
+  background-color: #eee;
+  font-size: 20px;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-6 mx-auto p-0">
+        <div class="card">
+            <div class="login-box">
+                <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">SMO</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">SEO</label>
+                    <div class="login-space">
+                        <div class="login">
+                      <h2 style="text-align:center">Our Pricing</h2>
+                      <br> 
+<p style="text-align:center">We provide best price in the market.</p>
+
+<div class="columns">
+
+  <ul class="price">
+    <li class="header">Gold</li>
+    <li class="grey">$ 399 / year</li>
+     <li>Package ID=SE-GL</li>
+                                        <li>No Contract Period</li>
+                                        <li>Phone Support</li>
+                                        <li>Email Support</li>
+                                        <li>Messenger Support</li>
+                                        <li>Monthly Reporting</li>
+                                        <li>Social Media Strategy</li>
+                                        <li>Facebook Setup</li>
+                                        <li>Facebook Enhance</li>
+                                        <li>Daily Facebook Management</li>
+                                        <li>Facebook Update & Engagement</li>
+                                        <li>Facebook - Profile Avatar Design</li>
+                                        <li>No Facebook - Timeline Design</li>
+                                        <li>5 Facebook Ad Weekly - Advertising Campaign</li>
+                                        <li>Geo Targeted Fans (Likes)</li>
+                                        <li>Twitter Setup</li>
+                                        <li>Twitter Enhance</li>
+                                        <li>Twitter Promotion</li>
+                                        <li>Twitter Management</li>
+                                        <li>Twitter Updates & Engagement</li>
+                                        <li>No Twitter- Background Design</li>
+                                        <li>Twitter- Follower Adding</li>
+                                        <li>Google+ Page Creation</li>
+                                        <li>Daily Updates</li>
+                                        <li>No Google Circle Adding</li>
+                                        <li>Linkedin Profile Creation</li>
+                                        <li>Linkedin - Company Page</li>
+                                        <li>Linkedin Updates</li>
+                                        <li>No YouTube - Background Design</li>
+                                        <li>YouTube Uploads</li>
+                                        
+                                        <li>No YouTube - Subscriber Adding</li>
+                                        <li>No Youtube Likes</li>
+                                        <li>Pinterest - Follower Adding</li>
+                                        <li>4 in month Article Writing</li>
+                                        <li>Article Submission</li>
+                                        <li>1 in Month Press Release Writing</li>
+                                        <li>No Press Release Submission</li>
+                                        <li>Video Optimization</li>
+                                        <li>Video Submissions</li>
+                                        <li>No Video Testimonials</li>
+                                        <li>50/Month Social Bookmarking</li>
+                                        <li>100/Month Directory Submission</li>
+                                        <li>No Blog Setup</li>
+                                        <li>No Blog Design</li>
+                                        <li>No Daily Blog Posts</li>
+                                        <li>No Blog Search Engine Optimization</li>
+                                        <li>No Blog Commenting</li>
+                                        <li>No 3rd Party Blog Posts</li>
+                                        <li>No Podcast Creation</li>
+                                        <li>No Podcast Distribution</li>
+                                        <li>No Strategic Management Rating</li>
+                                        <li>Photo & Presentation Sharing</li>
+                                        <li>No Digg Promotion</li>
+                                        <li>No StumbleUpon Promotion</li>
+                                        <li>No Location Based Marketing</li>
+                                        <li>No Social Application Development</li>
+                                        <li>Extra Cost for Social Media Copywriting Services</li>
+                                        <li>Extra Cost for Video Creation</li>
+                                        
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+
+<div class="columns ">
+  <ul class="price">
+    <li class="header" style="background-color:#4CAF50">Diamond</li>
+    <li class="grey">$ 499 / year</li>
+<li>Package ID=SE-DM</li>
+                                        <li>Contract Period</li>
+                                        <li>Phone Support</li>
+                                        <li>Email Support</li>
+                                        <li>No Messenger Support</li>
+                                        <li>Bi Monthly Reporting</li>
+                                        <li>Social Media Strategy</li>
+                                        <li>Facebook Setup</li>
+                                        <li>Facebook Enhance</li>
+                                        <li>Daily Facebook Management</li>
+                                        <li>Facebook Update & Engagement</li>
+                                        <li>Facebook - Profile Avatar Design</li>
+                                        <li>Facebook - Timeline Design</li>
+                                        <li>10 Facebook Ad Weekly - Advertising Campaign</li>
+                                        <li>Geo Targeted Fans (Likes)</li>
+                                        <li>Twitter Setup</li>
+                                        <li>Twitter Enhance</li>
+                                        <li>Twitter Promotion</li>
+                                        <li>Twitter Management</li>
+                                        <li>Twitter Updates & Engagement</li>
+                                        <li>Twitter- Background Design</li>
+                                        <li>Twitter- Follower Adding</li>
+                                        <li>Google+ Page Creation</li>
+                                        <li>Daily Updates</li>
+                                        <li>Google Circle Adding</li>
+                                        <li>Linkedin Profile Creation</li>
+                                        <li>Linkedin - Company Page</li>
+                                        <li>Linkedin Updates</li>
+                                        <li>YouTube - Background Design</li>
+                                        <li>YouTube Uploads</li>
+                                        
+                                        <li>YouTube - Subscriber Adding</li>
+                                        <li>Youtube Likes</li>
+                                        <li>Pinterest - Follower Adding</li>
+                                        <li>6 in month Article Writing</li>
+                                        <li>Article Submission</li>
+                                        <li>2 in Month Press Release Writing</li>
+                                        <li>No Press Release Submission</li>
+                                        <li>Video Optimization</li>
+                                        <li>Video Submissions</li>
+                                        <li>No Video Testimonials</li>
+                                        <li>75/Month Social Bookmarking</li>
+                                        <li>150/Month Directory Submission</li>
+                                        <li>No Blog Setup</li>
+                                        <li>No Blog Design</li>
+                                        <li>No Daily Blog Posts</li>
+                                        <li>No Blog Search Engine Optimization</li>
+                                        <li>No Blog Commenting</li>
+                                        <li>No 3rd Party Blog Posts</li>
+                                        <li>No Podcast Creation</li>
+                                        <li>No Podcast Distribution</li>
+                                        <li>No Strategic Management Rating</li>
+                                        <li>Photo & Presentation Sharing</li>
+                                        <li>Digg Promotion</li>
+                                        <li>StumbleUpon Promotion</li>
+                                        <li>Location Based Marketing</li>
+                                        <li>Social Application Development</li>
+                                        <li>Extra Cost for Social Media Copywriting Services</li>
+                                        <li>Extra Cost for Video Creation</li>
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+<div class="columns ">
+  <ul class="price">
+    <li class="header">Platinum</li>
+    <li class="grey">$ 799 / year</li>
+ <li>Package ID=SE-PN</li>
+                                        <li>No Contract Period</li>
+                                        <li>Phone Support</li>
+                                        <li>Email Support</li>
+                                        <li>No Messenger Support</li>
+                                        <li>Weekly Reporting</li>
+                                        <li>Social Media Strategy</li>
+                                        <li>Facebook Setup</li>
+                                        <li>Facebook Enhance</li>
+                                        <li>Daily Facebook Management</li>
+                                        <li>Facebook Update & Engagement</li>
+                                        <li>Facebook - Profile Avatar Design</li>
+                                        <li>Facebook - Timeline Design</li>
+                                        <li>Unlimited Facebook Ad Weekly - Advertising Campaign</li>
+                                        <li>Geo Targeted Fans (Likes)</li>
+                                        <li>Twitter Setup</li>
+                                        <li>Twitter Enhance</li>
+                                        <li>Twitter Promotion</li>
+                                        <li>Twitter Management</li>
+                                        <li>Twitter Updates & Engagement</li>
+                                        <li>Twitter- Background Design</li>
+                                        <li>Twitter- Follower Adding</li>
+                                        <li>Google+ Page Creation</li>
+                                        <li>Daily Updates</li>
+                                        <li>Google Circle Adding</li>
+                                        <li>Linkedin Profile Creation</li>
+                                        <li>Linkedin - Company Page</li>
+                                        <li>Linkedin Updates</li>
+                                        <li>YouTube - Background Design</li>
+                                        <li>YouTube Uploads</li>
+                                        
+                                        <li>YouTube - Subscriber Adding</li>
+                                        <li>Youtube Likes</li>
+                                        <li>Pinterest - Follower Adding</li>
+                                        <li>10 in month Article Writing</li>
+                                        <li>Article Submission</li>
+                                        <li>3 in Month Press Release Writing</li>
+                                        <li>No Press Release Submission</li>
+                                        <li>Video Optimization</li>
+                                        <li>Video Submissions</li>
+                                        <li>Video Testimonials</li>
+                                        <li>75/Month Social Bookmarking</li>
+                                        <li>200/Month Directory Submission</li>
+                                        <li>Blog Setup</li>
+                                        <li>Blog Design</li>
+                                        <li>Daily Blog Posts</li>
+                                        <li>Blog Search Engine Optimization</li>
+                                        <li>Blog Commenting</li>
+                                        <li>3rd Party Blog Posts</li>
+                                        <li>Podcast Creation</li>
+                                        <li>Podcast Distribution</li>
+                                        <li>Strategic Management Rating</li>
+                                        <li>Photo & Presentation Sharing</li>
+                                        <li>Digg Promotion</li>
+                                        <li>StumbleUpon Promotion</li>
+                                        <li>Location Based Marketing</li>
+                                        <li>Social Application Development</li>
+                                        <li>No Extra Cost Social Media Copywriting Services</li>
+                                        <li>No Extra Cost Video Creation</li>
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+
+                        </div>
+                        <div class="sign-up-form">
+                      <h2 style="text-align:center">Our Pricing</h2>
+                      <br> 
+<p style="text-align:center">We provide best price in the market.</p>
+<div class="columns">
+
+  <ul class="price">
+    <li class="header">Gold</li>
+    <li class="grey">$ 399 / year</li>
+    <li>Package ID=SE-GL</li>
+                                        <li>25 Keyword Optimization</li>
+                                        <li>Free Campaign Setup</li>
+                                        <li>6 Months Contract</li>
+                                        <li>Keyword Analysis</li>
+                                        <li>Baseline Ranking Check</li>
+                                        <li>Critical Website Analysis</li>
+                                        <li>Back Link Analysis</li>
+                                        <li>2 Competitor Analysis</li>
+                                        <li>Duplicate Content Check</li>
+                                        <li>Manual Spam Check</li>
+                                        <li>Google Penalty Check ( Panda/Penguin )</li>
+                                        <li>W3C Validation Check (for Home page)</li>
+                                        <li>Cross Browser Compatibility</li>
+                                        <li>Check the Broken Links</li>
+                                        <li>Google/Bing Webmaster Tools</li>
+                                        <li>Google Analytics Tracing Code</li>
+                                        <li>HTML Code Optimization</li>
+                                        <li>Optimizing Site Dir. Structure & Navigation</li>
+                                        <li>XML Sitemaps Creation</li>
+                                        <li>HTML Sitemap Creation</li>
+                                        <li>Optimizing Robots.txt</li>
+                                        <li>Canonicalization</li>
+                                        <li>Existing Content Optimization</li>
+                                        <li>Header Tags Optimization</li>
+                                        <li>upto 25 Optimizing Title/Meta Tags</li>
+                                        <li>Image Optimization for targeted pages</li>
+                                        <li>Navigation Analysis & Recommendations</li>
+                                        <li>Internal Linking & Anchor Text Optimization</li>
+                                        <li>URL Mapping</li>
+                                        <li>SEO Friendly URLs</li>
+                                        <li>Website Speed & Page load optimization</li>
+                                        <li>Webmaster Tools - Crawl Error Resolution</li>
+                                        <li>No Structured Data Implementation</li>
+                                        <li>10 New pages Creation( if required)</li>
+                                        <li>2(2 Blog*1) Blog Writing & Submission</li>
+                                        <li>1(1 Article*1) Article Writing & Submission</li>
+                                        <li>No Document/Guest Blog Writing & Submission</li>
+                                        <li>2 Press Release Submission</li>
+                                        <li>1 Infographic Submission</li>
+                                        <li>Classified Submissions</li>
+                                        <li>Business Listing</li>
+                                        <li>Social Bookmarking</li>
+                                        <li>5 Article Social Bookmarking</li>
+                                        <li>10 Blog Post Social Bookmarking</li>
+                                        <li>No Document/ Guest Blog Post Social Bookmarking</li>
+                                        <li>Slides Submissions</li>
+                                        <li>Question & Answering (Like Yahoo)</li>
+                                        <li>Local Search Engine Submission</li>
+                                        <li>Google + Business Page Set-up</li>
+                                        <li>Local Citations Submissions</li>
+                                        <li>Customer Review/Testimonial Submission</li>
+                                        <li>Social Sharing (in Facebook, Twitter, Google Plus, & Pinterest etc.)</li>
+                                        <li>No Geo-Social Targeting Research</li>
+                                        <li>3 Web 2.0 Profile Creation</li>
+                                        <li>10 (2 Images*5 sites) Image Promotion & Submission</li>
+                                        <li>No Video Submission</li>
+                                        <li>Google Analytics</li>
+                                        <li>Monthly SEO Performance Reports</li>
+                                        <li>Customer Support (Email, Chat & Telephone)</li>
+                                        
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+
+<div class="columns ">
+  <ul class="price">
+    <li class="header" style="background-color:#4CAF50">Diamond</li>
+    <li class="grey">$ 499 / year</li>
+<li>Package ID=SE-DM</li>
+                                        <li>40 Keyword Optimization</li>
+                                        <li>Free Campaign Setup</li>
+                                        <li>6 Months Contract</li>
+                                        <li>Keyword Analysis</li>
+                                        <li>Baseline Ranking Check</li>
+                                        <li>Critical Website Analysis</li>
+                                        <li>Back Link Analysis</li>
+                                        <li>5 Competitor Analysis</li>
+                                        <li>Duplicate Content Check</li>
+                                        <li>Manual Spam Check</li>
+                                        <li>Google Penalty Check ( Panda/Penguin )</li>
+                                        <li>W3C Validation Check (for Home page)</li>
+                                        <li>Cross Browser Compatibility</li>
+                                        <li>Check the Broken Links</li>
+                                        <li>Google/Bing Webmaster Tools</li>
+                                        <li>Google Analytics Tracing Code</li>
+                                        <li>HTML Code Optimization</li>
+                                        <li>Optimizing Site Dir. Structure & Navigation</li>
+                                        <li>XML Sitemaps Creation</li>
+                                        <li>HTML Sitemap Creation</li>
+                                        <li>Optimizing Robots.txt</li>
+                                        <li>Canonicalization</li>
+                                        <li>Existing Content Optimization</li>
+                                        <li>Header Tags Optimization</li>
+                                        <li>All Pages Optimizing Title/Meta Tags</li>
+                                        <li>Image Optimization for All Website pages</li>
+                                        <li>Navigation Analysis & Recommendations</li>
+                                        <li>Internal Linking & Anchor Text Optimization</li>
+                                        <li>URL Mapping</li>
+                                        <li>SEO Friendly URLs</li>
+                                        <li>Website Speed & Page load optimization</li>
+                                        <li>Webmaster Tools - Crawl Error Resolution</li>
+                                        <li>Structured Data Implementation</li>
+                                        <li>15 New pages Creation( if required)</li>
+                                        <li>3(3 Blog*1) Blog Writing & Submission</li>
+                                        <li>2(2 Article*1) Article Writing & Submission</li>
+                                        <li>1 Per Month Document/Guest Blog Writing & Submission</li>
+                                        <li>3 Press Release Submission</li>
+                                        <li>2 Infographic Submission</li>
+                                        <li>Classified Submissions</li>
+                                        <li>Business Listing</li>
+                                        <li>Social Bookmarking</li>
+                                        <li>10 Article Social Bookmarking</li>
+                                        <li>15 Blog Post Social Bookmarking</li>
+                                        <li>5 Document/ Guest Blog Post Social Bookmarking</li>
+                                        <li>Slides Submissions</li>
+                                        <li>Question & Answering (Like Yahoo)</li>
+                                        <li>Local Search Engine Submission</li>
+                                        <li>Google + Business Page Set-up</li>
+                                        <li>Local Citations Submissions</li>
+                                        <li>Customer Review/Testimonial Submission</li>
+                                        <li>Social Sharing (in Facebook, Twitter, Google Plus, & Pinterest etc.)</li>
+                                        <li>Geo-Social Targeting Research</li>
+                                        <li>3 Web 2.0 Profile Creation</li>
+                                        <li>15 (3 Images*5 sites) Image Promotion & Submission</li>
+                                        <li>Video Submission</li>
+                                        <li>Google Analytics</li>
+                                        <li>Monthly SEO Performance Reports</li>
+                                        <li>Customer Support (Email, Chat & Telephone)</li>
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+<div class="columns ">
+  <ul class="price">
+    <li class="header">Platinum</li>
+    <li class="grey">$ 799 / year</li>
+   <li>Package ID=SE-PN</li>
+                                        <li>80 Keyword Optimization</li>
+                                        <li>Free Campaign Setup</li>
+                                        <li>6 Months Contract</li>
+                                        <li>Keyword Analysis</li>
+                                        <li>Baseline Ranking Check</li>
+                                        <li>Critical Website Analysis</li>
+                                        <li>Back Link Analysis</li>
+                                        <li>Unlimited Competitor Analysis</li>
+                                        <li>Duplicate Content Check</li>
+                                        <li>Manual Spam Check</li>
+                                        <li>Google Penalty Check ( Panda/Penguin )</li>
+                                        <li>W3C Validation Check (for Home page)</li>
+                                        <li>Cross Browser Compatibility</li>
+                                        <li>Check the Broken Links</li>
+                                        <li>Google/Bing Webmaster Tools</li>
+                                        <li>Google Analytics Tracing Code</li>
+                                        <li>HTML Code Optimization</li>
+                                        <li>Optimizing Site Dir. Structure & Navigation</li>
+                                        <li>XML Sitemaps Creation</li>
+                                        <li>HTML Sitemap Creation</li>
+                                        <li>Optimizing Robots.txt</li>
+                                        <li>Canonicalization</li>
+                                        <li>Existing Content Optimization</li>
+                                        <li>Header Tags Optimization</li>
+                                        <li>All Pages Optimizing Title/Meta Tags</li>
+                                        <li>Image Optimization for All Website pages</li>
+                                        <li>Navigation Analysis & Recommendations</li>
+                                        <li>Internal Linking & Anchor Text Optimization</li>
+                                        <li>URL Mapping</li>
+                                        <li>SEO Friendly URLs</li>
+                                        <li>Website Speed & Page load optimization</li>
+                                        <li>Webmaster Tools - Crawl Error Resolution</li>
+                                        <li>Structured Data Implementation</li>
+                                        <li>25 New pages Creation( if required)</li>
+                                        <li>4(4 Blog*1) Blog Writing & Submission</li>
+                                        <li>3(3 Article*1) Article Writing & Submission</li>
+                                        <li>2 Per Month Document/Guest Blog Writing & Submission</li>
+                                        <li>3 Press Release Submission</li>
+                                        <li>4 Infographic Submission</li>
+                                        <li>Classified Submissions</li>
+                                        <li>Business Listing</li>
+                                        <li>Social Bookmarking</li>
+                                        <li>15 Article Social Bookmarking</li>
+                                        <li>20 Blog Post Social Bookmarking</li>
+                                        <li>10 Document/ Guest Blog Post Social Bookmarking</li>
+                                        <li>Slides Submissions</li>
+                                        <li>Question & Answering (Like Yahoo)</li>
+                                        <li>Local Search Engine Submission</li>
+                                        <li>Google + Business Page Set-up</li>
+                                        <li>Local Citations Submissions</li>
+                                        <li>Customer Review/Testimonial Submission</li>
+                                        <li>Social Sharing (in Facebook, Twitter, Google Plus, & Pinterest etc.)</li>
+                                        <li>Geo-Social Targeting Research</li>
+                                        <li>5 Web 2.0 Profile Creation</li>
+                                        <li>20 (4 Images*5 sites) Image Promotion & Submission</li>
+                                        <li>Video Submission</li>
+                                        <li>Google Analytics</li>
+                                        <li>Monthly SEO Performance Reports</li>
+                                        <li>Customer Support (Email, Chat & Telephone)</li>
+                                    
+    <li class="grey"><a href="#" class="btn btn-success">Sign Up</a></li>
+  </ul>
+</div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>                         
+
+</body>
+</html>

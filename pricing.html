@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+
+
+.login-snip .login,
+.login-snip .sign-up-form {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: all .4s linear
+}
+
+.login-snip .sign-in,
+.login-snip .sign-up,
+.login-space .group .check {
+    display: none
+}
+
+.login-snip .tab,
+.login-space .group .label,
+.login-space .group .button {
+    text-transform: uppercase
+}
+
+.login-snip .tab {
+    font-size: 22px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent
+}
+
+.login-snip .sign-in:checked+.tab,
+.login-snip .sign-up:checked+.tab {
+    color: blue;
+    border-color: #1161ee
+}
+
+.login-space {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d
+}
+
+.login-space .group {
+    margin-bottom: 15px
+}
+
+.login-space .group .label,
+.login-space .group .input,
+.login-space .group .button {
+    width: 100%;
+    color: #fff;
+    display: block
+}
+
+.login-space .group .input,
+.login-space .group .button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .1)
+}
+
+.login-space .group input[data-type="password"] {
+    text-security: circle;
+    -webkit-text-security: circle
+}
+
+.login-space .group .label {
+    color: #aaa;
+    font-size: 12px
+}
+
+.login-space .group .button {
+    background: #1161ee
+}
+
+.login-space .group label .icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    position: relative;
+    display: inline-block;
+    background: rgba(255, 255, 255, .1)
+}
+
+.login-space .group label .icon:before,
+.login-space .group label .icon:after {
+    content: '';
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    transition: all .2s ease-in-out 0s
+}
+
+.login-space .group label .icon:before {
+    left: 3px;
+    width: 5px;
+    bottom: 6px;
+    transform: scale(0) rotate(0)
+}
+
+.login-space .group label .icon:after {
+    top: 6px;
+    right: 0;
+    transform: scale(0) rotate(0)
+}
+
+.login-space .group .check:checked+label {
+    color: #fff
+}
+
+.login-space .group .check:checked+label .icon {
+    background: #1161ee
+}
+
+.login-space .group .check:checked+label .icon:before {
+    transform: scale(1) rotate(45deg)
+}
+
+.login-space .group .check:checked+label .icon:after {
+    transform: scale(1) rotate(-45deg)
+}
+
+.login-snip .sign-in:checked+.tab+.sign-up+.tab+.login-space .login {
+    transform: rotate(0)
+}
+
+.login-snip .sign-up:checked+.tab+.login-space .sign-up-form {
+    transform: rotate(0)
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: '';
+    display: table
+}
+
+.clearfix:after {
+    clear: both;
+    display: block
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.hr {
+    height: 2px;
+    margin: 60px 0 50px 0;
+    background: rgba(255, 255, 255, .2)
+}
+
+.foot {
+    text-align: center
+}
+
+.card {
+    width: 1000px;
+    left: -80px
+}
+
+::placeholder {
+    color: #b3b3b3
+}
+* {
+  box-sizing: border-box;
+}
+
+.columns {
+  float: left;
+  width: 33.3%;
+  padding: 1px;
+}
+
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.price:hover {
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+.price li {
+  border-bottom: 1px solid #eee;
+  padding: 20px;
+  text-align: center;
+}
+
+.price .grey {
+  background-color: #eee;
+  font-size: 20px;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
+  }
+}
+
+   @import url(https://fonts.googleapis.com/css?family=Lato:700);
+        body {
+            font-family: 'lato', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: linear-gradient(35deg, #84fab0, #8fd3f4);
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+        
+        .wrapper-card {
+            display: flex;
+            flex-wrap: nowrap;
+            margin: 20px auto;
+            width: 130%;
+        }
+        
+        .card {
+            background: #fff;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px transparent;
+            flex: 1;
+            margin: 8px;
+            padding: -630px;
+            position: relative;
+            text-align: center;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .card.popular {
+            margin-top: -10px;
+            margin-bottom: -10px;
+        }
+        
+        .card.popular .card-title h3 {
+            color: #3498db;
+            font-size: 22px;
+        }
+        
+        .card.popular .card-price {
+            margin: 50px;
+        }
+        
+        .card.popular .card-price h1 {
+            color: #3498db;
+            font-size: 60px;
+        }
+        
+        .card.popular .card-action button {
+            background-color: #3498db;
+            border-radius: 80px;
+            color: #fff;
+            font-size: 17px;
+            margin-top: -15px;
+            padding: 15px;
+            height: 80px;
+        }
+        
+        .card.popular .card-action button:hover {
+            background-color: #2386c8;
+            font-size: 23px;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-ribbon {
+            position: absolute;
+            overflow: hidden;
+            top: -10px;
+            left: -10px;
+            width: 114px;
+            height: 112px;
+        }
+        
+        .card-ribbon span {
+            position: absolute;
+            display: block;
+            width: 160px;
+            padding: 10px 0;
+            background-color: #3498db;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 13px;
+            text-transform: uppercase;
+            text-align: center;
+            left: -35px;
+            top: 25px;
+            transform: rotate(-45deg);
+        }
+        
+        .card-ribbon::before,
+        .card-ribbon::after {
+            position: absolute;
+            z-index: -1;
+            content: '';
+            display: block;
+            border: 5px solid #2980b9;
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+        
+        .card-ribbon::before {
+            top: 0;
+            right: 0;
+        }
+        
+        .card-ribbon::after {
+            bottom: 0;
+            left: 0;
+        }
+        
+        .card-title h3 {
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+        
+        .card-title h4 {
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .card-price {
+            margin: 60px 0;
+        }
+        
+        .card-price h1 {
+            font-size: 46px;
+        }
+        
+        .card-price h1 sup {
+            font-size: 15px;
+            display: inline-block;
+            margin-left: -20px;
+            width: 10px;
+        }
+        
+        .card-price h1 small {
+            color: rgba(0, 0, 0, 0.3);
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        
+        .card-description ul {
+            display: block;
+            list-style: none;
+            margin: 60px 0;
+            padding: 0;
+        }
+        
+        .card-description li {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 15px;
+            margin: 0 0 15px;
+        }
+        
+        .card-description li::before {
+            font-family: FontAwesome;
+            content: "\f00c";
+            padding: 0 5px 0 0;
+            color: rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-action button {
+            background: transparent;
+            border: 2px solid #3498db;
+            border-radius: 30px;
+            color: #3498db;
+            cursor: pointer;
+            display: block;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 20px;
+            width: 100%;
+            height: 60px;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .card-action button:hover {
+            background-color: #3498db;
+            box-shadow: 0 2px 4px #196090;
+            color: #fff;
+            font-size: 17px;
+        }
+
+</style>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-6 mx-auto p-0">
+        <div class="card">
+            <div class="login-box">
+                <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">SMO</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">SEO</label>
+                    <div class="login-space">
+                        <div class="login">
+                      <h2 style="text-align:center">Our Pricing</h2>
+<p style="text-align:center">We provide best price in the market.</p>
+
+ <div class="wrapper-card">
+        <div class="card">
+            <div class="card-title">
+                <h3>Bronze</h3>
+                <h4>You can not find this offering anywhere rightnow in the market with bronze plan</h4>
+            </div>
+            <div class="card-price">
+                <h1>
+                <sup>$</sup>
+                12
+                <small>month</small>
+            </h1>
+            </div>
+            <div class="card-description">
+                <ul>
+                    <li>feature 1</li>
+                    <li>feature 2</li>
+                    <li>featrure 3</li>
+                    <li>feature 4</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                <button type="button">Get Basic</button>
+            </div>
+        </div>
+        <div class="card popular">
+            <div class="card-ribbon">
+                <span>most popular</span>
+            </div>
+            <div class="card-title">
+                <h3>Silver</h3>
+                <h4>You can not find this offering anywhere rightnow in the market with silver plan</h4>
+            </div>
+            <div class="card-price">
+                <h1>
+                <sup>$</sup>
+                15
+                <small>month</small>
+            </h1>
+            </div>
+            <div class="card-description">
+                <ul>
+                    <li>feature 1</li>
+                    <li>feature 2</li>
+                    <li>featrure 3</li>
+                    <li>feature 4</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                <button type="button">Get Pro</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">
+                <h3>Gold</h3>
+                <h4>You can not find this offering anywhere rightnow in the market with gold plan</h4>
+            </div>
+            <div class="card-price">
+                <h1>
+                <sup>$</sup>
+                20
+                <small>month</small>
+            </h1>
+            </div>
+            <div class="card-description">
+                <ul>
+                    <li>feature 1</li>
+                    <li>feature 2</li>
+                    <li>featrure 3</li>
+                    <li>feature 4</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                <button type="button">Get Premium</button>
+            </div>
+        </div>
+    </div>
+
+                        </div>
+                        <div class="sign-up-form">
+                           
+Hi
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>                         
+
+</body>
+</html>
