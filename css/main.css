@@ -155,7 +155,7 @@ iframe {
 
 .wrap-contact3 {
   width: 500px;
-  background: 	#B22222;
+  background: 	rgba(204, 11, 11, 0.89);
 
   border-radius: 10px;
   overflow: hidden;
@@ -561,19 +561,19 @@ textarea.input3 {
 
 .select2-container .select2-results__option[aria-selected="true"] {
   background: 	#B22222;
-  background: -webkit-linear-gradient(45deg, #DC143C, #DC143C);
-  background: -o-linear-gradient(45deg, #DC143C, #DC143C);
-  background: -moz-linear-gradient(45deg, #DC143C, #DC143C);
-  background: linear-gradient(45deg, #DC143C, #DC143C);
+  background: -webkit-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: -o-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: -moz-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
   color: white;
 }
 
 .select2-container .select2-results__option--highlighted[aria-selected] {
   background: 	#B22222;
-  background: -webkit-linear-gradient(45deg, #DC143C, #DC143C);
-  background: -o-linear-gradient(45deg, #DC143C, #DC143C);
-  background: -moz-linear-gradient(45deg, #DC143C, #DC143C);
-  background: linear-gradient(45deg, #DC143C, #DC143C);
+  background: -webkit-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: -o-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: -moz-linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
+  background: linear-gradient(45deg, rgba(204, 11, 11, 0.89), rgba(204, 11, 11, 0.89));
   color: white;
 }
 

@@ -145,8 +145,7 @@ a.white {
 	font: 700 0.75rem/0 "Raleway", sans-serif;
 	text-decoration: none;
 	transition: all 0.2s;
-	height:1200px;
-    width:1200px;
+
 }
 
 .btn-solid-reg:hover {
@@ -381,7 +380,7 @@ input[type='checkbox'] {
 
 .form-control-submit-button:hover {
 	background-color: transparent;
-	color: #00bfd8;
+	color: rgba(204, 11, 11, 0.89);
 }
 
 /* Form Success And Error Message Formatting */

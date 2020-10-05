@@ -62,7 +62,7 @@ body {
 	font-size: 1.6rem;
 	font-family: "Open Sans", sans-serif;
 	color: #2d3d4f;
-	background-color: #1aac9e;
+	background-color:rgba(204, 11, 11, 0.89);
 }
 
 a {
@@ -256,6 +256,7 @@ a {
 .ml6 .letter {
   display: inline-block;
   line-height: 1em;
+  color: whitesmoke;
 }
 
 .pricing-wrapper > li {
@@ -319,7 +320,7 @@ a {
     transform: translateY(-50%);
     height: 50%;
     width: 1px;
-    background-color: #b1d6e8;
+    background-color: rgb(189, 15, 15);
   }
   .pricing-wrapper > li::after {
     display: none;
@@ -381,12 +382,12 @@ a {
     padding: 1.9em 0 1.6em;
     pointer-events: auto;
     text-align: center;
-    color: #173d50;
+    color: rgb(187, 92, 28);
     background-color: transparent;
 }
 
 .exclusive .pricing-header {
-    color: #1bbc9d;
+    color: rgb(189, 15, 15);
     background-color: transparent;
 }
 
@@ -404,7 +405,7 @@ a {
 .duration {
 	font-weight: 700;
 	font-size: 1.3rem;
-	color: #8dc8e4;
+	color: rgb(189, 15, 15);
 	text-transform: uppercase;
 }
 
@@ -424,12 +425,12 @@ a {
 
 .currency, 
 .duration {
-    color: #1bbc9d;
+    color: rgb(202, 94, 31);
 }
 
 .exclusive .currency,
 .exclusive .duration {
-    color: #2d3e50;
+    color:rgb(189, 15, 15);
 }
 
 .currency {
@@ -547,9 +548,9 @@ a {
     display: inline-block;
     height: auto;
     padding: 1.3em 2em;
-    color: #1bbc9d;
+    color: rgb(189, 15, 15);
     border-radius: 8px;
-    border: 2px solid #1bbc9d;
+    border: 2px solid rgb(189, 15, 15);
     font-size: 1.4rem;
     text-indent: 0;
     text-transform: uppercase;
@@ -559,21 +560,21 @@ a {
 }
 
 .no-touch .select:hover {
-    background-color: #1bbc9d;
+    background-color: rgb(189, 15, 15);
 	color: #ffffff;
 }
 
 .exclusive .select {
-    background-color: #1bbc9d;
+    background-color:rgb(189, 15, 15);
 	color: #ffffff;
 }
   
 .no-touch .exclusive .select:hover {
-    background-color: #24e0ba;
+    background-color: rgb(189, 15, 15);
 }
   
 .secondary-theme .exclusive .select {
-    background-color: #1bbc9d;
+    background-color: rgb(189, 15, 15);
 }
   
 .no-touch .secondary-theme .exclusive .select:hover {
