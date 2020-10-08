@@ -958,7 +958,7 @@ input[type='checkbox'] {
 }
 
 .lightbox-basic .btn-solid-reg.mfp-close:hover {
-	color: #00bfd8;
+	color: red;
 }
 /* end of signup Button */
 
